@@ -12,6 +12,15 @@ server.use(express.json({ limit: '50mb' }));
 
 server.use(morgan('dev'));
 server.use(cors());
+Server.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Headers', 'Authorization, X-API-KEY, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Request-Method');
+    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+    res.header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    next();
+});
+
+
 
 //MANEJO DE ERRORES
 server.use((err, req, res, next) => {
